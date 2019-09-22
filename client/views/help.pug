@@ -1,0 +1,22 @@
+html
+    head
+        meta(charset='UTF-8')
+        title Calculadora Online!
+    body
+        header 
+            h1 API Calculator!
+        main
+            h3 Puede realizar peticiones GET a:
+            ul
+                li #{address}/suma
+                li #{address}/resta
+                li #{address}/multiplicar
+                li #{address}/dividir
+            p Debe de realizar peticiones mediante query, pasando como parametros num1 y num2, ej:
+            p /sumar?num1=5&num2=6
+            p Lo cual retornara un objeto: { err: string, data: number }
+            ul
+                li err devuelve un string, es caso de que algun error haya sucedido.
+                li data devuelve un numero, en caso de que el pedido haya sido exitoso.
+        footer
+            a(href='/') Inicio.
