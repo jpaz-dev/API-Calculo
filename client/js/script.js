@@ -5,7 +5,7 @@ const llamarAPICalculator = (direccion, valor1, valor2) => {
 
     request.onload = () => {
         let res = JSON.parse(request.responseText);
-        output.value = !res.err ? res.data : res.err;
+        output.textContent = !res.err ? res.data : res.err;
     };
 
     request.open('GET', `${direccion}?num1=${valor1}&num2=${valor2}`);

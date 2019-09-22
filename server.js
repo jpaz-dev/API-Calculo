@@ -2,7 +2,7 @@ const ip = require('ip');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const calculadora = require(path.join(__dirname , '/src/calculatorAPI.js'));
+const calculadora = require(path.join(__dirname , '/src/calculadora.js'));
 
 const app = express();
 const puerto = 4040;
@@ -15,12 +15,15 @@ const inputValido = (input) => {
     }
 }
 
-const jsonResponce = (errString, dataInt) => {
-    const obj = {
-        err: errString,
-        data: dataInt
+const jsonResponce = (func, datos, errMsj) => {
+    const obj = { err: null, data: null };
+    if(inputValido(datos)){
+        obj.data = func(datos.num1, datos.num2);
+    } else {
+        obj.err = errMsj;
     }
-    console.log(obj)
+    console.log(datos);
+    console.log(obj);
     return JSON.stringify(obj);
 };
 
@@ -31,45 +34,42 @@ app.set('views', path.join(__dirname, '/client/views/'));
 
 app.get('/sumar', (req, res) => {
     let input = req.query;
-    let output;
-    if(inputValido(input)){
-        output = jsonResponce( null, calculadora.sumar(input.num1, input.num2));
-    } else {
-        output = jsonResponce('No se ha podido realizar la suma, intentelo de nuevo.', null);
-    }
+    let output = jsonResponce(
+        calculadora.sumar ,
+        input,
+        'No se ha podido realizar la suma, intentelo de nuevo.'
+    );
     res.send(output);
 });
 
 app.get('/restar', (req, res) => {
     let input = req.query;
-    let output;
-    if(inputValido(input)){
-        output = jsonResponce( null, calculadora.restar(input.num1, input.num2));
-    } else {
-        output = jsonResponce('No se ha podido realizar la resta, intentelo de nuevo.', null);
-    }
+    let output = jsonResponce(
+        calculadora.restar,
+        input,
+        'No se ha podido realizar la resta, intentelo de nuevo.'
+    );
     res.send(output);
 });
 
 app.get('/multiplicar', (req, res) => {
     let input = req.query;
-    let output;
-    if(inputValido(input)){
-        output = jsonResponce( null, calculadora.multiplicar(input.num1, input.num2));
-    } else {
-        output = jsonResponce('No se ha podido realizar la multiplicacion, intentelo de nuevo.', null);
-    }
+    let output = jsonResponce(
+        calculadora.multiplicar,
+        input,
+        'No se ha podido realizar la multiplicacion, intentelo de nuevo.'
+    );
     res.send(output);
 });
 
 app.get('/dividir', (req, res) => {
     let input = req.query;
-    let output;
-    if(inputValido(input) && input.num2 != 0){
-        output = jsonResponce( null, calculadora.dividir(input.num1, input.num2));
-    } else {
-        output = jsonResponce('No se ha podido realizar la division, intentelo de nuevo.', null);
-    }
+    input.num2 = input.num2 == 0? null : input.num2;
+    let output = jsonResponce(
+        calculadora.dividir,
+        input,
+        'No se ha podido realizar la division, intentelo de nuevo.'
+    );
     res.send(output);
 });
 

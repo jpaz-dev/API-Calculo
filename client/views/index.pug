@@ -1,21 +1,23 @@
 html
     head
+        link(rel="stylesheet", href="/css/styles.css")
         meta(charset='UTF-8')
         title Calculadora Online!
     body
         header 
             h1 API Calculator!
         main
-            h3 Caluladora demostracion:
             #calculadora
-                input(type="text" name='value-1' id='num1')
-                input(type="text" name='value-2' id='num2')
-                button(onclick='sumar()') +
-                button(onclick='restar()') -
-                button(onclick='dividir()') /                    
-                button(onclick='multiplicar()') *  
-            textarea#resultado
+                #inputs
+                    input(type="text" name='value-1' id='num1')
+                    input(type="text" name='value-2' id='num2')
+                #acciones
+                    button(onclick='sumar()') +
+                    button(onclick='restar()') -
+                    button(onclick='dividir()') /                    
+                    button(onclick='multiplicar()') *
+                #resultado
         footer
             p
                 a(href='/help') ¿Como utilizar la API?
-        script(type='application/javascript' src='/js/calculadora.js')
+        script(type='application/javascript' src='/js/script.js')
