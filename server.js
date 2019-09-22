@@ -18,7 +18,7 @@ app.get('/sumar', (req, res) => {
     let output = jsonResponce(
         calculadora.sumar ,
         input,
-        errMSj('suma', 'parametro incorrectos')
+        errMSj('suma', 'parámetros incorrectos')
     );
     res.send(output);
 });
@@ -28,7 +28,7 @@ app.get('/restar', (req, res) => {
     let output = jsonResponce(
         calculadora.restar,
         input,
-        errMSj('resta', 'parametro incorrectos')
+        errMSj('resta', 'parámetros incorrectos')
     );
     res.send(output);
 });
@@ -38,14 +38,14 @@ app.get('/multiplicar', (req, res) => {
     let output = jsonResponce(
         calculadora.multiplicar,
         input,
-        errMSj('multiplicacion', 'parametro incorrectos')
+        errMSj('multiplicación', 'parámetros incorrectos')
     );
     res.send(output);
 });
 
 app.get('/dividir', (req, res) => {
     let input = req.query;
-    let msjDeError = 'parametro incorrectos';
+    let msjDeError = 'parámetros incorrectos';
     if(input.num2 == 0 && input.num1 != '' && input.num2 != ''){
         input.num2 = null;
         msjDeError = 'no se puede dividir por 0';
@@ -53,7 +53,7 @@ app.get('/dividir', (req, res) => {
     let output = jsonResponce(
         calculadora.dividir,
         input,
-        errMSj('division', msjDeError)
+        errMSj('división', msjDeError)
     );
     res.send(output);
 });
