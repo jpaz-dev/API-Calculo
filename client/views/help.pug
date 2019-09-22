@@ -9,15 +9,19 @@ html
         main
             h3 Puede realizar peticiones GET a:
             ul
-                li #{address}/suma
-                li #{address}/resta
-                li #{address}/multiplicar
-                li #{address}/dividir
-            p Debe de realizar peticiones mediante query, pasando como parametros num1 y num2, ej:
+                li http://#{address}/suma
+                li http://#{address}/resta
+                li http://#{address}/multiplicar
+                li http://#{address}/dividir
+            p Debe de realizar peticiones mediante query, pasando como parámetros num1 y num2, ej:
             p /sumar?num1=5&num2=6
-            p Lo cual retornara un objeto: { err: string, data: number }
+            p Lo cual retornara un objeto: 
+                small { err: {string}, data: {number} }
             ul
-                li err devuelve un string, es caso de que algun error haya sucedido.
-                li data devuelve un numero, en caso de que el pedido haya sido exitoso.
+                li err es un string, que contendra un mensaje de en caso de que algún error haya sucedido.
+                li data devuelve un numero, que contendra un numero en caso de que el pedido haya sido exitoso. En este caso 11.
         footer
-            a(href='/') Inicio.
+            p
+                a(href='/') Volver.
+            p#info 
+                | © ComIT 2019
