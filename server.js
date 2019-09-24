@@ -2,16 +2,14 @@
 const ip = require('ip');
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
 const calculadora = require(path.join(__dirname , '/src/calculadora.js'));
 
 const app = express();
 const puerto = 4040; 
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/client/')));
-app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '/client/views/'));
+app.set('view engine', 'pug');
 
 app.get('/sumar', (req, res) => {
     let input = req.query;
