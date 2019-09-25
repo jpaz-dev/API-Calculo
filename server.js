@@ -65,12 +65,8 @@ app.get('/help', (req, res) => {
     res.render('help', {address});
 });
 
-app.listen(puerto, err => {
-    if(!err){
-        console.log(`Server running at http://${ip.address()}:${puerto}`);
-    } else {
-        console.log(`Error: ${err}`);
-    }
+app.listen(puerto, () => {
+    console.log(`Server running at http://${ip.address()}:${puerto}`);
 });
 
 /****************************************************************/
